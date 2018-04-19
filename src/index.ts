@@ -1,19 +1,22 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
+import {createConnection, ConnectionManager} from "typeorm";
+import { Article } from "./entity/Article";
+import { connect } from "tls";
 
 createConnection().then(async connection => {
 
-    // console.log("Inserting a new user into the database...");
-    // const user = new User();
-    // user.firstName = "Timber";
-    // user.lastName = "Saw";
-    // user.age = 25;
-    // await connection.manager.save(user);
-    // console.log("Saved a new user with id: " + user.id);
-
-    // console.log("Loading users from the database...");
-    // const users = await connection.manager.find(User);
-    // console.log("Loaded users: ", users);
+    console.log("Inserting a new user into the database...");
+    const newArticle = new Article();
+    newArticle.body = 'My First Article Body'
+    newArticle.title = 'My First Article Title'
+    try {
+        const savedArticle = await connection.manager.save(newArticle);
+        console.log(savedArticle)
+    } catch (error) {
+        console.log(error)
+    }
+    const articles = await connection.manager.find(Article);
+    console.log(articles)
 
     // console.log("Here you can setup and run express/koa/any other framework.");
 
