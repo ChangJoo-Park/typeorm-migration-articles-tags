@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableIndex, TableColumn } from 'typeorm';
 
 export class articleCreate1524147878209 implements MigrationInterface {
 
@@ -9,7 +9,10 @@ export class articleCreate1524147878209 implements MigrationInterface {
                 {
                     name: 'id',
                     type: 'int',
-                    isPrimary: true
+                    isPrimary: true,
+                    // 아래 내용이 있어야 AUTO_INCREMENT 가능
+                    isGenerated: true,
+                    generationStrategy: 'increment'
                 },
                 {
                     name: 'title',
@@ -23,7 +26,7 @@ export class articleCreate1524147878209 implements MigrationInterface {
         }), true)
 
         await queryRunner.createIndex('article', new TableIndex({
-            name: 'IDX_ARTICLE_NAME',
+            name: 'IDX_ARTICLE_TITLE',
             columnNames: ['title']
         }))
     }
