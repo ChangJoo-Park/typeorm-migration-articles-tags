@@ -4,7 +4,7 @@ export class articleCreate1524147878209 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.createTable(new Table({
-            name: 'articles',
+            name: 'article',
             columns: [
                 {
                     name: 'id',
@@ -22,14 +22,14 @@ export class articleCreate1524147878209 implements MigrationInterface {
             ]
         }), true)
 
-        await queryRunner.createIndex('articles', new TableIndex({
+        await queryRunner.createIndex('article', new TableIndex({
             name: 'IDX_ARTICLE_NAME',
-            columnNames: ['name']
+            columnNames: ['title']
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.dropTable('articles', true)
+        await queryRunner.dropTable('article', true)
     }
 
 }
