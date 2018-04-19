@@ -5,7 +5,6 @@ import { connect } from "tls";
 
 createConnection().then(async connection => {
 
-    console.log("Inserting a new user into the database...");
     const newArticle = new Article();
     newArticle.body = 'My First Article Body'
     newArticle.title = 'My First Article Title'
