@@ -8,7 +8,8 @@ export class articleCreate1524147878209 implements MigrationInterface {
             columns: [
                 {
                     name: 'id',
-                    type: 'int',
+                    // MySql은 int, Sqlite는 integer
+                    type: 'integer',
                     isPrimary: true,
                     // 아래 내용이 있어야 AUTO_INCREMENT 가능
                     isGenerated: true,
