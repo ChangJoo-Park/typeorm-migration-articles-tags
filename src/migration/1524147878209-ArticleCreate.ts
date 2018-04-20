@@ -33,6 +33,7 @@ export class articleCreate1524147878209 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
+        await queryRunner.dropIndex("article", "IDX_ARTICLE_TITLE");
         await queryRunner.dropTable('article', true)
     }
 

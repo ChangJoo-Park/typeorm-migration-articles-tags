@@ -29,10 +29,8 @@ export class TagCreate1524178909455 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.dropTable('tag', true)
         await queryRunner.dropIndex("tag", "IDX_TAG_NAME");
-        await queryRunner.dropTable("tag");
-
+        await queryRunner.dropTable('tag', true)
     }
 
 }
